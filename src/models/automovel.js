@@ -13,7 +13,7 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    modelo: {
+    marca: {
         type: String,
         required: true
     }
