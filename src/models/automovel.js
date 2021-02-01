@@ -1,6 +1,6 @@
 'use-strict'
 
-const mongoose = require('mongoose');
+const { mongoose } = require('../../config');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
