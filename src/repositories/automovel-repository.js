@@ -5,8 +5,9 @@ const Automovel = mongoose.model('Automovel');
 
 
 exports.create = async(data) => {
-    var Automovel = new Automovel(data);
-    await Automovel.save();
+    console.log(data)
+    var automovel = new Automovel(data);
+    await automovel.save();
 }
 
 exports.update = async(id, data) => {

@@ -15,9 +15,16 @@ const Automovel = require('./models/automovel');
 
 // Carrega as Rotas
 const indexRoute = require('./routes/index');
-const productRoute = require('./routes/automovel-route');
+const automovelRoute = require('./routes/automovel-route');
+
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 app.use('/', indexRoute);
-app.use('/products', productRoute);
+app.use('/automovel', automovelRoute);
 
 module.exports = app;

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.status(200).send({
-        title: "Node Store API",
+        title: "CRUD SEIDOR API - FEITO POR HYAGO",
         version: "0.0.2"
     });
 });
