@@ -1,31 +1,43 @@
 'use-strict'
 
-const mongoose = require('mongoose');
-const Automovel = mongoose.model('Automovel');
+const repository = require('../repositories/automovel-repository')
 
 
 exports.post = (req, res, next) => {
-    var automovel = new Automovel(req.body);
-    automovel
-        .save()
-        .then( x => {
-            res.status(201).send({ 
-                message: 'Automóvel cadastrado com sucesso!' });
-        }).catch( e => {
-            res.status(400).send({ 
-                message: 'Falha ao cadastrar automóvel!', data: e});
+    try {
+        var data = await repository.create(req.body);
+        res.status(200).send({
+            message: 'Automóvel criado com sucesso!'
         });
-    
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao criar automóvel'
+        });
+    }
 };
 
 exports.put = (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).send({
-        id: id,
-        item: req.body
-    });
-};
+    try {
+        await repository.update(req.params.id, req.body);
+        res.status(200).send({
+            message: 'Automóvel atualizado com sucesso!'
+        });
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao atualizar automóvel'
+        });
+    };
+}
 
 exports.delete = (req, res, next) => {
-    res.status(200).send(req.body);
+    try {
+        await repository.delete(req.params.id);
+        res.status(200).send({
+            message: 'Automóvel excluído com sucesso!'
+        });
+    } catch (e) {
+        res.status(500).send({
+            message: 'Falha ao excluir automóvel'
+        });
+    };
 }
